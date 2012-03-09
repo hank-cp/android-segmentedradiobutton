@@ -17,36 +17,52 @@
 package com.makeramen.segmented;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.RadioGroup;
 
 public class SegmentedRadioGroup extends RadioGroup {
 
-	public SegmentedRadioGroup(Context context) {
-		super(context);
-	}
+    private int mBackgroundResId = R.drawable.segment_button;
+    private int mBackgroundLeftResId = R.drawable.segment_radio_left;
+    private int mBackgroundMiddleResId = R.drawable.segment_radio_middle;
+    private int mBackgroundRightResId = R.drawable.segment_radio_right;
 
-	public SegmentedRadioGroup(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public SegmentedRadioGroup(Context context) {
+        super(context);
+    }
 
-	@Override
-	protected void onFinishInflate() {
-		super.onFinishInflate();
-		changeButtonsImages();
-	}
+    public SegmentedRadioGroup(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SegmentedRadioGroup);
+        mBackgroundResId = a.getResourceId(
+                R.styleable.SegmentedRadioGroup_background, R.drawable.segment_button);
+        mBackgroundLeftResId = a.getResourceId(
+                R.styleable.SegmentedRadioGroup_backgroundLeft, R.drawable.segment_radio_left);
+        mBackgroundMiddleResId = a.getResourceId(
+                R.styleable.SegmentedRadioGroup_backgroundMiddle, R.drawable.segment_radio_middle);
+        mBackgroundRightResId = a.getResourceId(
+                R.styleable.SegmentedRadioGroup_backgroundRight, R.drawable.segment_radio_right);
+        a.recycle();
+    }
 
-	private void changeButtonsImages(){
-		int count = super.getChildCount();
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        changeButtonsImages();
+    }
 
-		if(count > 1){
-			super.getChildAt(0).setBackgroundResource(com.makeramen.segmented.R.drawable.segment_radio_left);
-			for(int i=1; i < count-1; i++){
-				super.getChildAt(i).setBackgroundResource(com.makeramen.segmented.R.drawable.segment_radio_middle);
-			}
-			super.getChildAt(count-1).setBackgroundResource(com.makeramen.segmented.R.drawable.segment_radio_right);
-		}else if (count == 1){
-			super.getChildAt(0).setBackgroundResource(com.makeramen.segmented.R.drawable.segment_button);
-		}
-	}
+    private void changeButtonsImages(){
+        int count = super.getChildCount();
+
+        if(count > 1){
+            super.getChildAt(0).setBackgroundResource(mBackgroundLeftResId);
+            for(int i=1; i < count-1; i++){
+                super.getChildAt(i).setBackgroundResource(mBackgroundMiddleResId);
+            }
+            super.getChildAt(count-1).setBackgroundResource(mBackgroundRightResId);
+        }else if (count == 1){
+            super.getChildAt(0).setBackgroundResource(mBackgroundResId);
+        }
+    }
 }

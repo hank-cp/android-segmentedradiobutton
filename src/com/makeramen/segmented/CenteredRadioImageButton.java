@@ -25,31 +25,32 @@ import android.widget.RadioButton;
 
 public class CenteredRadioImageButton extends RadioButton {
 
-	Drawable image;
+    Drawable image;
 
-	public CenteredRadioImageButton(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		TypedArray a = context.obtainStyledAttributes(attrs, com.makeramen.segmented.R.styleable.CompoundButton, 0, 0);
-		image = a.getDrawable(1);
-		setButtonDrawable(android.R.color.transparent);
-	}
+    public CenteredRadioImageButton(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        TypedArray a = context.obtainStyledAttributes(attrs, com.makeramen.segmented.R.styleable.CompoundButton, 0, 0);
+        image = a.getDrawable(1);
+        setButtonDrawable(android.R.color.transparent);
+        a.recycle();
+    }
 
-	@Override
-	protected void onDraw(Canvas canvas) {
-		super.onDraw(canvas);
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
 
-		if (image != null) {
-			image.setState(getDrawableState());
+        if (image != null) {
+            image.setState(getDrawableState());
 
-			// scale image to fit inside button
+            // scale image to fit inside button
 
-			int imgHeight = image.getIntrinsicHeight();
-			int imgWidth = image.getIntrinsicWidth();
-			int btnWidth = getWidth();
-			int btnHeight = getHeight();
-			float scale;
+            int imgHeight = image.getIntrinsicHeight();
+            int imgWidth = image.getIntrinsicWidth();
+            int btnWidth = getWidth();
+            int btnHeight = getHeight();
+            float scale;
 
-			if (imgWidth <= btnWidth && imgHeight <= btnHeight) {
+            if (imgWidth <= btnWidth && imgHeight <= btnHeight) {
                 scale = 1.0f;
             } else {
                 scale = Math.min((float) btnWidth / (float) imgWidth,
@@ -57,12 +58,12 @@ public class CenteredRadioImageButton extends RadioButton {
             }
 
 
-			int dx = (int) ((btnWidth - imgWidth * scale) * 0.5f + 0.5f);
+            int dx = (int) ((btnWidth - imgWidth * scale) * 0.5f + 0.5f);
             int dy = (int) ((btnHeight - imgHeight * scale) * 0.5f + 0.5f);
 
-			image.setBounds(dx, dy, (int)(dx + imgWidth * scale), (int)(dy + imgWidth * scale));
+            image.setBounds(dx, dy, (int)(dx + imgWidth * scale), (int)(dy + imgWidth * scale));
 
-			image.draw(canvas);
-		}
-	}
+            image.draw(canvas);
+        }
+    }
 }

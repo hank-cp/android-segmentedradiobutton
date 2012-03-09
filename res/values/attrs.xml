@@ -14,8 +14,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 -->
-<resources>    
-	<declare-styleable name="CompoundButton">
-		<attr name="android:button" />
-	</declare-styleable>
+<resources>
+    <declare-styleable name="CompoundButton">
+        <attr name="android:button" />
+    </declare-styleable>
+
+    <declare-styleable name="SegmentedRadioGroup">
+        <attr name="background" format="reference" />
+        <attr name="backgroundLeft" format="reference" />
+        <attr name="backgroundMiddle" format="reference" />
+        <attr name="backgroundRight" format="reference" />
+    </declare-styleable>
 </resources>
