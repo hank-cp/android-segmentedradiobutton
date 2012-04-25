@@ -20,7 +20,7 @@
     </declare-styleable>
 
     <declare-styleable name="SegmentedRadioGroup">
-        <attr name="background" format="reference" />
+        <attr name="android:background" />
         <attr name="backgroundLeft" format="reference" />
         <attr name="backgroundMiddle" format="reference" />
         <attr name="backgroundRight" format="reference" />
