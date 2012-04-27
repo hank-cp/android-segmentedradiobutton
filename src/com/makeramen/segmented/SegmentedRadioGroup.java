@@ -36,7 +36,7 @@ public class SegmentedRadioGroup extends RadioGroup {
         super(context, attrs);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SegmentedRadioGroup);
         mBackgroundResId = a.getResourceId(
-                R.styleable.SegmentedRadioGroup_background, R.drawable.segment_button);
+                R.styleable.SegmentedRadioGroup_android_background, R.drawable.segment_button);
         mBackgroundLeftResId = a.getResourceId(
                 R.styleable.SegmentedRadioGroup_backgroundLeft, R.drawable.segment_radio_left);
         mBackgroundMiddleResId = a.getResourceId(
