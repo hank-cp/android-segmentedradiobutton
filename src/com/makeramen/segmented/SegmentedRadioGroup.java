@@ -49,10 +49,10 @@ public class SegmentedRadioGroup extends RadioGroup {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        changeButtonsImages();
+        updateButtonsStyle();
     }
 
-    private void changeButtonsImages(){
+    public void updateButtonsStyle(){
         int count = super.getChildCount();
 
         if(count > 1){
